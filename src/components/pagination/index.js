@@ -57,7 +57,7 @@ function Pagination({ pageCount, currentPage, onPageChange }) {
                     )
                 })}
                 <button
-                    disabled={currentPage === pageNumber.length}
+                    disabled={currentPage === pageCount}
                     onClick={() => onPageChange(currentPage + 1)}
                 >
                     next
