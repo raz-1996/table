@@ -2,7 +2,7 @@
 import React from "react";
 import "./index.css"
 
-const education = [
+const nat = [
     {
         value: "All",
         id: "all"
@@ -22,7 +22,7 @@ const education = [
 ]
 
 function getOptions(list) {
-    return list.map(item => (<option key={item.value} value={item.id}>{item.label || item.value}</option>))
+    return list.map(item => (<option key={item.value} value={item.id}>{item.value}</option>))
 }
 
 
@@ -30,7 +30,7 @@ function Filters({ onPerPageChange, onNatChange }) {
     return (
         <div className="og-row" id="og-filters">
             <select className="" onChange={onNatChange}>
-                {getOptions(education)}
+                {getOptions(nat)}
             </select>
 
             <label className="select-label">Per Page</label>

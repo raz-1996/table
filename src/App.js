@@ -42,9 +42,9 @@ class App extends React.Component {
         this.page = 1
         if (this.nat === "all") {
             this.nat = ""
-        } else {
-            this.fetchUserList();
-        }
+        } 
+        this.fetchUserList();
+        
     }
 
     handlePageChange = value => {
