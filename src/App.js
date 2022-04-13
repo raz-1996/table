@@ -15,13 +15,14 @@ class App extends React.Component {
 
     perPage = 10;
     page = 1;
+    nat = ""
 
     componentDidMount() {
         this.fetchUserList();
     }
 
     fetchUserList = () => {
-        fetch(`https://randomuser.me/api/?page=${this.page}&results=${this.perPage}`)
+        fetch(`https://randomuser.me/api/?page=${this.page}&results=${this.perPage}&nat=${this.nat}`)
             .then(response => {
                 if (response.ok) {
                     return response.json()
@@ -35,6 +36,15 @@ class App extends React.Component {
     handlePerPageChange = event => {
         this.perPage = event.target.value;
         this.fetchUserList();
+    }
+    handleNatChange = event => {
+        this.nat = event.target.value;
+        this.page = 1
+        if (this.nat === "all") {
+            this.nat = ""
+        } else {
+            this.fetchUserList();
+        }
     }
 
     handlePageChange = value => {
@@ -51,7 +61,7 @@ class App extends React.Component {
         return (
             <div className="og-contianer">
                 <Header text="Users List" />
-                <Filters onPerPageChange={this.handlePerPageChange} />
+                <Filters onPerPageChange={this.handlePerPageChange} onNatChange={this.handleNatChange} />
                 <Table
                     userList={this.state.userList}
                     pageForId={(this.page - 1) * this.perPage}
